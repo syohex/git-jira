@@ -54,19 +54,19 @@ func _main() int {
 
 	branch, err := gitBranch()
 	if err != nil {
-		fmt.Println("Could not get git branch name. Please check")
+		fmt.Println("Could not get git branch name. Please check: ", err)
 		return 1
 	}
 
 	baseURL, err := jiraBaseURL()
 	if err != nil {
-		fmt.Println("Please set jira.baseURL in git config")
+		fmt.Println("Please set jira.baseURL in git config: ", err)
 		return 1
 	}
 
 	projects, err := jiraProjects()
 	if err != nil {
-		fmt.Println("Please set jira.projects in git config")
+		fmt.Println("Please set jira.projects in git config: ", err)
 		return 1
 	}
 
@@ -87,7 +87,7 @@ func _main() int {
 			fmt.Println(url)
 		} else {
 			if err := browser.OpenURL(url); err != nil {
-				fmt.Printf("Could not open URL: %s", url)
+				fmt.Printf("Could not open URL: %s: %v", url, err)
 			}
 		}
 
