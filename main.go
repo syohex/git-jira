@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"regexp"
 	"strings"
 
@@ -82,7 +83,7 @@ func _main() int {
 		matched = true
 
 		// URL is like https://jira.example.com/browse/SOMEPROJ-1234
-		url := fmt.Sprintf("%s/%s", baseURL, ticket)
+		url := path.Join(baseURL, ticket)
 		if *showURL {
 			fmt.Println(url)
 		} else {
